@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Home Section -->
+{% block content %}
+<section id="home">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <h2>The creative web & mobile studio. we are young designers and focused on brand identity, web development and social marketing.</h2>
+                    <hr>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- Portfolio Section -->
+
+<section id="portfolio">
+     <div class="container">
+          <div class="row">
+               {% for new_index in index %}
+               <div class="col-md-4 col-sm-6">
+                    <a href="{% url 'index:index_detail' new_index.pk %}">
+                         <div class="portfolio-thumb">
+                              <img src="{{new_index.image.url}}" class="img-responsive" alt="Portfolio">
+                                   <div class="portfolio-overlay">
+                                        <div class="portfolio-item">
+                                             <h3>{{new_index.post_name}}</h3>
+                                             <small>{{new_index.post_type}}</small>
+                                        </div>
+                                   </div>
+                         </div>
+                    </a>
+               </div>
+               {% endfor %}
+               <div class="col-md-12 col-sm-12 text-center">
+                    <h3>hello, if you interest working together. just send message <a href="contact.html">contact page</a></h3>
+               </div>
+               
+          </div>
+     </div>
+</section>
+
+{% endblock %}
