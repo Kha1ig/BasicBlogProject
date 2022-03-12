@@ -14,9 +14,9 @@
          <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
                    <li><a href="{% url 'index:index' %}">Projects</a></li>
-                   <li class="active"><a href="about.html">Our Studio</a></li>
-                   <li><a href="blog.html">Blog</a></li>
-                   <li><a href="contact.html">Contact</a></li>
+                   <li class="active"><a href="{% url 'about:about' %}">Our Studio</a></li>
+                   <li><a href="{% url 'blog:blog' %}">Blog</a></li>
+                   <li><a href="{% url 'contact:contact' %}">Contact</a></li>
               </ul>
          </div>
 
