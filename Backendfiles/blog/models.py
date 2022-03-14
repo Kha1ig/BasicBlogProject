@@ -33,6 +33,7 @@ class blog_Post(models.Model):
     blog_text5 = models.TextField(max_length=500, blank = False, null = False, default='')
 
     class Meta:
+        ordering = ['-blog_date']
         verbose_name = 'blog_Post'
     
     def __str__(self):
@@ -46,15 +47,31 @@ class Comment(models.Model):
         ('reject', 'Reject'),
     )
 
-    blog =  models.ForeignKey(blog_Post, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, default='')
-    letter = models.TextField()
-    email = models.EmailField(default='')
-    image = models.ImageField(upload_to = 'comment-author-image/', default = '')
+    blog =  models.ForeignKey(blog_Post, on_delete=models.CASCADE, related_name='show_all_comments')
+    name = models.CharField(max_length=100, blank= False, null= False)
+    letter = models.TextField(blank= False, null= False)
+    email = models.EmailField(blank=False, null=False)
+    image = models.ImageField(upload_to = 'comment-author-image/')
     date_add = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=STATUS_CHOICES)
 
+    class Meta:
+        ordering = ['-date_add']
+
     def __str__(self):
-        return (self.name)
+        return f'Comment {self.letter} by {self.name}'
+
+
+class commenter(models.Model):
+    blog =  models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='show_commentters')
+    name = models.CharField(max_length=100, default='')
+
+    class Meta:
+        ordering = ['name']
+    
+
+    def __str__(self):
+        return f'Comment {self.blog} by {self.name}'
+
     
     

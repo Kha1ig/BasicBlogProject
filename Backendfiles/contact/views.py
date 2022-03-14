@@ -18,6 +18,6 @@ def contact(request):
         contact.detail = detail
         contact.budget = budget_select
         contact.save()
-        return HttpResponse('THANKS FOR CONTACT US')
+        return render (request, 'contact.html')
 
     return render (request, 'contact.html')

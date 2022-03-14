@@ -12,35 +12,35 @@
                <div class="col-md-offset-1 col-md-10 col-sm-12">
                     <div class="blog-single-post-thumb">
                          <div class="blog-post-image">
-                              <img src="{{new_blog.blog_image.url}}" class="img-responsive" alt="Blog Image">
+                              <img src="{{blog.blog_image.url}}" class="img-responsive" alt="Blog Image">
                          </div>
 
                          <div class="blog-post-title">
-                              <h2>{{new_blog.title}}</h2>
+                              <h2>{{blog.title}}</h2>
                          </div>
 
                          <div class="blog-post-format">
-                              <span><a href="#"><img src="{{new_blog.author_image.url}}" class="img-responsive img-circle"> Jen Lopez</a></span>
-                              <span><i class="fa fa-date"></i>{{new_blog.blog_date}}</span>
+                              <span><a href="#"><img src="{{blog.author_image.url}}" class="img-responsive img-circle"> Jen Lopez</a></span>
+                              <span><i class="fa fa-date"></i>{{blog.blog_date}}</span>
                               <span><a href="#"><i class="fa fa-comment-o"></i> 124 Comments</a></span>
                          </div>
 
                          <div class="blog-post-des">
-                              <p>{{new_blog.blog_text1}}</p>
-                              <blockquote>{{new_blog.blog_text2}}</blockquote>
-                              <p>{{new_blog.blog_text3}}</p>
-                              <h3>{{new_blog.title_2}}</h3>
-                              <p>{{new_blog.blog_text4}}</p>
-                              <p>{{new_blog.blog_text5}}</p>
+                              <p>{{blog.blog_text1}}</p>
+                              <blockquote>{{blog.blog_text2}}</blockquote>
+                              <p>{{blog.blog_text3}}</p>
+                              <h3>{{blog.title_2}}</h3>
+                              <p>{{blog.blog_text4}}</p>
+                              <p>{{blog.blog_text5}}</p>
                          </div>
 
                          <div class="blog-author">
                               <div class="media">
                                    <div class="media-object pull-left">
-                                        <img src="{{new_blog.author_image.url}}" class="img-circle img-responsive" alt="blog">
+                                        <img src="{{blog.author_image.url}}" class="img-circle img-responsive" alt="blog">
                                    </div>
                                    <div class="media-body">
-                                        <h3 class="media-heading"><a href="#">{{new_blog.author}} {{new_blog.author_position}}</a></h3>
+                                        <h3 class="media-heading"><a href="#">{{blog.author}} {{blog.author_position}}</a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
                                    </div>
                               </div>
@@ -48,16 +48,18 @@
 
                          <div class="blog-comment">
                               <h3>2 Comments</h3>
+                              {% for comment in new_comment %}
                                    <div class="media">
                                         <div class="media-object pull-left">
-                                             <img src="images/comment-image1.jpg" class="img-responsive img-circle" alt="Blog Image">
+                                             <img src="{{comment.image.url}}" class="img-responsive img-circle" alt="Blog Image">
                                         </div>
                                         <div class="media-body">
-                                             <h3 class="media-heading">David Jones</h3>
-                                             <span>7 months ago</span>
-                                             <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur.</p>
+                                             <h3 class="media-heading">{{new_comment.name}}</h3>
+                                             <span>{{comment.date_add}}</span>
+                                             <p>{{comment.letter}}</p>
                                         </div>
                                    </div>
+                                   {% endfor %}
                                    <div class="media">
                                         <div class="media-object pull-left">
                                              <img src="images/comment-image2.jpg" class="img-responsive img-circle" alt="Blog Image">

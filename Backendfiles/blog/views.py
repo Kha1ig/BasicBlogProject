@@ -1,7 +1,9 @@
+from re import template
 from django.shortcuts import render
 from django.http import HttpResponse
-from blog.models import blog_Post, blog_header, Comment
+from blog.models import blog_Post, blog_header, Comment, commenter
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 def blog(request):
@@ -17,8 +19,8 @@ def blog(request):
 
 @csrf_exempt
 def blog_detail(request,pk):
-
-    new_blog = blog_Post.objects.get(pk=pk)
+    #new_blog = blog_Post.objects.get(pk=pk)
+    blog = blog_Post.objects.filter(pk=pk).first()
 
     if request.method == 'POST':
         comment = Comment()
@@ -31,8 +33,12 @@ def blog_detail(request,pk):
         comment.email = email
         comment.letter = letter
         comment.image = image
-        
+        comment.blog = blog
         comment.save()
-        return HttpResponse('THANKS FOR Send message')
+        
+        return  render (request, 'single-post.html', {'blog':blog})
+        
 
-    return render (request, 'single-post.html', {'new_blog':new_blog})
+    new_comment = Comment.objects.filter(status='approve')
+    
+    return render (request, 'single-post.html', {'blog':blog, 'comment': new_comment})
