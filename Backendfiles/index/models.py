@@ -22,4 +22,4 @@ class index_Post(models.Model):
         verbose_name_plural = 'index_Posts'
 
     def __str__(self):
-        return f'{self.image}, {self.post_date}'
+        return self.image, self.post_date
