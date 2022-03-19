@@ -43,8 +43,8 @@ class blog_Post(models.Model):
 
 class Comment(models.Model):
     STATUS_CHOICES = (
-        ('approve', 'Approve'),
         ('reject', 'Reject'),
+        ('approve', 'Approve'),
     )
 
     blog =  models.ForeignKey(blog_Post, on_delete=models.CASCADE, related_name='show_all_comments')
@@ -53,7 +53,7 @@ class Comment(models.Model):
     email = models.EmailField(blank=False, null=False)
     image = models.ImageField(upload_to = 'comment-author-image/')
     date_add = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=STATUS_CHOICES)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, )
 
     class Meta:
         ordering = ['-date_add']
