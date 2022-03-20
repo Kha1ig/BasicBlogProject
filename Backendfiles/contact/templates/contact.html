@@ -14,18 +14,40 @@
                          <h2>The creative web & mobile studio and focused on brand identity, web development and social marketing.</h2>
                     </div>
 
-                    <form  method="post">
+                    <form action="#"  method="post">
                          {% csrf_token %}
+                         
                          <div class="col-md-6 col-sm-6">
+                              {{ forum.name }}
+                              
+                         </div>
+                         <div class="col-md-6 col-sm-6">
+                              {{ forum.email }}
+                         </div>
+                         <div class="col-md-6 col-sm-6">
+                              {{ forum.phone }}
+                              
+                         </div>
+                         <div class="col-md-6 col-sm-6">
+                              {{ forum.budget }}
+                              
+                         </div>
+                         
+                         <div class="col-md-12 col-sm-12"> 
+                              {{ forum.detail }}
+                         </div>
+                         
+
+                         <!-- <div class="col-md-6 col-sm-6">
                               <input name="name" type="text" class="form-control" placeholder="Name">
                          </div>
                          <div class="col-md-6 col-sm-6">
                               <input name="email" type="email" class="form-control" placeholder="Email">
                          </div>
                          <div class="col-md-6 col-sm-6">
-                              <input name="phone" type="telephone" class="form-control" placeholder="Phone Number">
-                         </div>
-                         <div class="col-md-6 col-sm-6">
+                              <input name="phone" type="number" class="form-control" placeholder="Phone Number">
+                         </div> 
+                          <div class="col-md-6 col-sm-6">
 
                               <select class="form-control" name="budget">
                                    <option>Budget Select</option>
@@ -33,10 +55,10 @@
                                    <option>$2200 to $2400</option>
                                    <option>$2500 to $3800</option>
                               </select>
-                         </div>
-                         <div class="col-md-12 col-sm-12"> 
+                         </div> -->
+                         <!-- <div class="col-md-12 col-sm-12"> 
                               <textarea name="detail" class="form-control" rows="5" placeholder="Project Details"></textarea>
-                         </div>
+                         </div> -->
                          <div class="col-md-3 col-sm-4">
                               <input type="submit" class="form-control" value="Send Message">
                          </div>

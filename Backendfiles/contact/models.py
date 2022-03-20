@@ -12,10 +12,10 @@ class Contact(models.Model):
     )
 
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(max_length=200)
     phone = models.CharField(max_length=12)
-    detail = models.TextField(max_length=500)
     budget = models.CharField(max_length=51, choices=STATUS_CHOICES, default=STATUS_CHOICES)
+    detail = models.TextField(max_length=500)
 
     def __str__(self):
         return self.name
