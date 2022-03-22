@@ -16,10 +16,13 @@ admin.site.register(blog_Post, PostAdmin)
 @admin.register(Comment)
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'blog', 'letter', 'date_add',)
+    list_display = ('name', 'blog', 'date_add',)
+    list_display_links = list_display
     list_filter = ('status', 'date_add', )
-    search_fields = ('name', 'email', 'letter',)
+    search_fields = ('name', 'email', )
+    search_help_text = ('find by name or email') 
     actions = ['approve_comments']
+    
     
 
     def approve_comments(self, request, queryset):

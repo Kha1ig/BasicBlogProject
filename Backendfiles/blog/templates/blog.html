@@ -27,7 +27,9 @@
                          <div class="blog-post-format">
                               <span><a href="#"><img src="{{new_blog.author_image.url}}" class="img-responsive img-circle">{{blogs.author}}</a></span>
                               <span><i class="fa fa-date"></i>{{new_blog.blog_date}}</span>
-                              <span><a href="#"><i class="fa fa-comment-o"></i> 124 Comments</a></span>
+                              {% with new_comment.count as total_comments %}
+                              <span><a href="#"><i class="fa fa-comment-o"></i> {{total_comments}} Comments</a></span>
+                              {% endwith %}
                          </div>
                          <div class="blog-post-des">
                               <p>{{new_blog.blog_text1}}</p>

@@ -20,9 +20,11 @@
                          </div>
 
                          <div class="blog-post-format">
-                              <span><a href="#"><img src="{{blog.author_image.url}}" class="img-responsive img-circle"> Jen Lopez</a></span>
+                              <span><a href="#"><img src="{{blog.author_image.url}}" class="img-responsive img-circle"> {{blog.author}}</a></span>
                               <span><i class="fa fa-date"></i>{{blog.blog_date}}</span>
-                              <span><a href="#"><i class="fa fa-comment-o"></i> 124 Comments</a></span>
+                              {% with new_comment.count as total_comments %}
+                              <span><a href="#"><i class="fa fa-comment-o"></i> {{total_comments}} Comments</a></span>
+                              {% endwith %}
                          </div>
 
                          <div class="blog-post-des">
@@ -41,25 +43,28 @@
                                    </div>
                                    <div class="media-body">
                                         <h3 class="media-heading"><a href="#">{{blog.author}} {{blog.author_position}}</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                                        <p>{{blog.author_about}}</p>
                                    </div>
                               </div>
                          </div>
 
                          <div class="blog-comment">
-                              <h3>2 Comments</h3>
+                              {% with new_comment.count as total_comments %}
+                              <h3> {{ total_comments }} Comments</h3>
+                              {% endwith %}
+
                               {% for comment in new_comment %}
                                    <div class="media">
                                         <div class="media-object pull-left">
                                              <img src="{{comment.image.url}}" class="img-responsive img-circle" alt="Blog Image">
                                         </div>
                                         <div class="media-body">
-                                             <h3 class="media-heading">{{new_comment.name}}</h3>
+                                             <h3 class="media-heading">{{comment.name}}</h3>
                                              <span>{{comment.date_add}}</span>
                                              <p>{{comment.letter}}</p>
                                         </div>
                                    </div>
-                                   {% endfor %}
+                              {% endfor %}
                                    <div class="media">
                                         <div class="media-object pull-left">
                                              <img src="images/comment-image2.jpg" class="img-responsive img-circle" alt="Blog Image">
@@ -76,10 +81,16 @@
                               <h3>Leave a Comment</h3>
                                    <form  method="post">
                                         {% csrf_token %}
-                                        <textarea name = "letter" class="form-control" placeholder="Message" rows="5" name"Your Comments" required></textarea>
+                                        
+                                        {% for field in forum %}
+                                        {{field}}
+                                        {% endfor %}
+                                      
+
+                                        <!-- <textarea name = "letter" class="form-control" placeholder="Message" rows="5" name"Your Comments" required></textarea>
                                         <input name = "name" type="text" class="form-control" placeholder="Name" name="name" required>
                                         <input name = "email" type="email" class="form-control" placeholder="Email" name="email" required>
-                                        <input type="file" name="image" id="image">
+                                        <input type="file" name="image" id="image"> -->
                                         <div class="col-md-3 col-sm-4">
                                              <input type="submit" class="form-control" value="Post Your Comment">
                                         </div>
