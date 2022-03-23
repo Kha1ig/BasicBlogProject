@@ -10,10 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 def blog(request):
     blog3 = blog_header.objects.all()
     blogs = blog_Post.objects.all()
-
+    comment = Comment.objects.filter(status='approve')
     context = {
         'blog': blogs,
-        'blog2': blog3
+        'blog2': blog3,
+        'comment': comment
     }
 
     return render (request, 'blog.html', context = context)
@@ -23,7 +24,7 @@ def blog_detail(request,pk):
     #new_blog = blog_Post.objects.get(pk=pk)
     blog = blog_Post.objects.filter(pk=pk).first()
     
-    new_comment = Comment.objects.filter(status='approve')
+    new_comment = Comment.objects.filter(blog=blog,status='approve')
     forum = CommentForm()
     if request.method == "POST":
         Comment.objects.create(
@@ -37,4 +38,4 @@ def blog_detail(request,pk):
     
 
     
-    return render (request, 'single-post.html', {'blog':blog, 'forum': forum, 'new_comment': new_comment})
+    return render (request, 'single-post.html', {'blog':blog, 'new_comment': new_comment, 'forum': forum,})

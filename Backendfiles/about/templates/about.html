@@ -36,10 +36,18 @@
                     <div class="col-md-4 col-sm-6">
                          <h3>{{about2.work_name}}</h3>
                          <ul>
+                              {% if about2.work_subtitle_1 %}
                               <li>{{about2.work_subtitle_1}}</li>
+                              {% endif %}
+                              {% if about2.work_subtitle_2 %}
                               <li>{{about2.work_subtitle_2}}</li>
+                              {% endif %}
+                              {% if about2.work_subtitle_3 %}
                               <li>{{about2.work_subtitle_3}}</li>
+                              {% endif %}
+                              {% if about2.work_subtitle_4 %}
                               <li>{{about2.work_subtitle_4}}</li>
+                              {% endif %}
                          </ul>
                     </div>
                     {% endfor %}

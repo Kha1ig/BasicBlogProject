@@ -53,7 +53,6 @@ class Comment(models.Model):
     image = models.ImageField(upload_to = 'comment-image/')
     date_add = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='reject')
-    review_count = models.IntegerField(default=0,)
     
 
     class Meta:
@@ -64,7 +63,7 @@ class Comment(models.Model):
     
     @property
     def comment_count(self):
-        return self.review_count.count()
+        return self.letter.count()
 
 
 class commenter(models.Model):
